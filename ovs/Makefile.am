@@ -8,6 +8,8 @@
 AUTOMAKE_OPTIONS = foreign subdir-objects
 ACLOCAL_AMFLAGS = -I m4
 
+AM_DISTCHECK_CONFIGURE_FLAGS = --with-version-suffix="$(VERSION_SUFFIX)"
+
 AM_CPPFLAGS = $(SSL_CFLAGS)
 AM_LDFLAGS = $(SSL_LDFLAGS)
 AM_LDFLAGS += $(OVS_LDFLAGS)
@@ -81,6 +83,8 @@ EXTRA_DIST = \
 	.ci/linux-prepare.sh \
 	.ci/osx-build.sh \
 	.ci/osx-prepare.sh \
+	.ci/windows-build.sh \
+	.ci/windows-prepare.sh \
 	.cirrus.yml \
 	.editorconfig \
 	.github/workflows/build-and-test.yml \
@@ -161,6 +165,7 @@ SUFFIXES += .in
 	    -e 's,[@]PYTHON3[@],$(PYTHON3),g' \
 	    -e 's,[@]RUNDIR[@],$(RUNDIR),g' \
 	    -e 's,[@]VERSION[@],$(VERSION),g' \
+	    -e 's,[@]VERSION_SUFFIX[@],$(VERSION_SUFFIX),g' \
 	    -e 's,[@]localstatedir[@],$(localstatedir),g' \
 	    -e 's,[@]pkgdatadir[@],$(pkgdatadir),g' \
 	    -e 's,[@]sysconfdir[@],$(sysconfdir),g' \
